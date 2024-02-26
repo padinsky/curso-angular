@@ -1,0 +1,15 @@
+
+@if (name) {
+  <h1>{{name}}</h1>
+} @else {
+  <button>Login</button>
+}
+
+<button (click)="printHello($event)">Haz click</button>
+
+@for (item of array; track item) {
+  <li> {{item}} </li>
+}
+<br/>
+<h1>Calendario</h1>
+<app-grip></app-grip>
