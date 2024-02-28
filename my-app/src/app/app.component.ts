@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GripComponent } from "./grip/grip.component";
+import { SignalTestComponent } from "./signal-test/signal-test.component";
+import { TimerComponent } from "./timer/timer.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, GripComponent]
+    imports: [
+      RouterOutlet,
+      GripComponent,
+      SignalTestComponent,
+      TimerComponent
+    ]
 })
 export class AppComponent {
   name: String = 'Adrián Padilla';
