@@ -9,5 +9,5 @@ import { EventEmitter } from 'stream';
   styleUrl: './day.component.css'
 })
 export class DayComponent {
-  @Input() day: number = 0;
+  @Input() day!: number;
 }
