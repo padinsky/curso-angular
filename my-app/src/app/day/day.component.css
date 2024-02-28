@@ -4,8 +4,11 @@
     align-items: center;
     width: 1.5rem;
     height: 1.5rem;
+    border-radius: 0.1rem;
 }
 
 :host(:hover) {
-    outline: 1px solid blue;
+    outline: 1px solid rgb(21, 138, 177);
+    box-shadow: 2px 2px 2px 1px rgba(78, 78, 78, 0.43);
+    cursor: pointer;
 }

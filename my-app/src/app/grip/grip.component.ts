@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { DayComponent } from "../day/day.component";
 
 @Component({
@@ -15,7 +15,14 @@ export class GripComponent {
       this.days.push(i);
     }
   }
-  handlerDay(day:number){
-    console.log(day)
+
+  @HostListener('click', ["$event"])
+  handlerDay(ev: Event) {
+    const node = (ev.composedPath() as HTMLElement[])
+      .find(n => n.dataset && 'day' in n.dataset); // Cortocircuito
+    if (node) {
+      const {day} = node.dataset;
+      console.log(day);
+    }
   }
 }

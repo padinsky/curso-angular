@@ -13,7 +13,6 @@ export class AppComponent {
   name: String = 'Adrián Padilla';
   array: number[] = [1,2,3,4,5,6];
 
-
   public printHello(event: Event) {
     event.stopPropagation();
     console.log("Hello world!");
