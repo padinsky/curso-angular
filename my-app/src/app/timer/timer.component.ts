@@ -1,4 +1,6 @@
-import { Component, effect, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, effect, signal, afterNextRender, Injector, Inject, PLATFORM_ID  } from '@angular/core';
+import { platform } from 'node:os';
 
 @Component({
   selector: 'app-timer',
@@ -9,14 +11,35 @@ import { Component, effect, signal } from '@angular/core';
 })
 export class TimerComponent {
   time = signal(this.formatDate());
-
+  isBrowser = true;
+  
+  /*// Le falta la hidratación
   constructor() {
-    effect((onCleanup) => {
-      const handle = setInterval(() => this.time.set(this.formatDate()), 1000);
-      onCleanup(() => {
-        clearInterval(handle);
+    afterNextRender(()  => {
+      effect((onCleanup) => {
+        const handle = setInterval(() => this.time.set(this.formatDate()), 1000);
+        onCleanup(() => {
+          clearInterval(handle);
+        });
       });
     });
+  }
+  */
+
+  constructor(private injector: Injector, @Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  ngOnInit(): void {
+    effect((onCleanup) => {
+      if (this.isBrowser) {
+        const handle = setInterval(() => this.time.set(this.formatDate()), 1000);
+        onCleanup(() => {
+          clearInterval(handle);
+        });
+      }
+      
+    }, {injector: this.injector});
   }
 
   private getDate(): Date {
