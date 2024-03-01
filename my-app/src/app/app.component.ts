@@ -4,6 +4,7 @@ import { GripComponent } from "./grip/grip.component";
 import { SignalTestComponent } from "./signal-test/signal-test.component";
 import { TimerComponent } from "./timer/timer.component";
 import { InjectorTestComponent } from "./injector-test/injector-test.component";
+import { CustomerComponent } from "./customer/customer.component";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ import { InjectorTestComponent } from "./injector-test/injector-test.component";
     SignalTestComponent,
     TimerComponent,
     InjectorTestComponent,
-  ],
+    CustomerComponent
+  ]
 })
 export class AppComponent {
   name: String = 'Adrián Padilla';
