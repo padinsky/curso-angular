@@ -3,6 +3,7 @@ import { createService } from '../create.service';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVER } from '../app.config';
 import { CreateUrl } from '../util';
+import { Spinner } from '../spinner';
 
 const PATH = '/customer';
 
@@ -30,7 +31,18 @@ const service = (path: string) => {
 })
 export class CustomerComponent {
   constructor(private servicioCreateCustomer: createService<Request>) {
-    this.servicioCreateCustomer.create({ id: 1, name: 'Adrian', phone: '666666666'})
-      .subscribe(data => console.log(data));
+    this.create();
+  }
+
+  @Spinner()
+  private async create() {
+    try {
+      // spinner on -> Porque el usuario esta esperando algo
+      const result = await this.servicioCreateCustomer.create({ id: 1, name: 'Adrian', phone: '666666666'});
+    } catch (err) {
+
+    } finally {
+      // spinner of -> Porque el usuario esta esperando algo
+    }
   }
 }

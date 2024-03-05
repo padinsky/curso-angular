@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 
 export class createService<T> {
 
@@ -7,7 +7,7 @@ export class createService<T> {
     console.log(this.url);
   }
 
-  public create(entity: T): Observable<T> {
-    return this.http.post<T>(this.url, entity);
+  public create(entity: T): Promise<T> {
+    return lastValueFrom(this.http.post<T>(this.url, entity));
   }
 }
