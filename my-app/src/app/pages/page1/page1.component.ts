@@ -15,11 +15,7 @@ export class Page1Component {
 
   constructor(private route: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id')!;
-    this.from = '';
-    this.page = '';
-    this.route.queryParams.subscribe(params => {
-      this.from = params['from'];
-      this.page = params['page'];
-    });
+    this.from = this.route.snapshot.queryParams['from'];
+    this.page = this.route.snapshot.queryParams['page'];
   }
 }

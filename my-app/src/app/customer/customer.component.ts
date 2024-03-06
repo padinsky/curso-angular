@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { createService } from '../create.service';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVER } from '../app.config';
-import { CreateUrl } from '../util';
+import { CreateUrl, ISpinner } from '../util';
 import { Spinner } from '../spinner';
 
 const PATH = '/customer';
@@ -29,9 +29,15 @@ const service = (path: string) => {
     { provide: createService, useFactory: service(PATH), deps: [HttpClient, URL_SERVER] }
   ]
 })
-export class CustomerComponent {
+export class CustomerComponent implements ISpinner {
   constructor(private servicioCreateCustomer: createService<Request>) {
     this.create();
+  }
+  on(): void {
+    console.log("On");
+  }
+  off(): void {
+    console.log("Off");
   }
 
   @Spinner()
